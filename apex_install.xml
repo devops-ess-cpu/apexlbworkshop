@@ -7,8 +7,8 @@
         xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" 
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
-<changeSet id="INSTALL_100" author="ADMIN"      >
-    <n0:runApexScript objectName="install" objectType="SCRIPT" ownerName="ADMIN" sourceType="STRING" >
+<changeSet id="INSTALL_100" author="WKSP_LIQUIBASEDEMO"      >
+    <n0:runApexScript objectName="install" objectType="SCRIPT" ownerName="WKSP_LIQUIBASEDEMO" sourceType="STRING" >
         <n0:source><![CDATA[
 declare 
 
@@ -59,7 +59,7 @@ begin
   end if;
 end;  
 /
-@@f100.sql
+@@code/f100.sql
         ]]></n0:source>
     </n0:runApexScript>
 </changeSet>
