@@ -27,9 +27,12 @@ wwv_flow_imp_page.create_page_plug(
 ,p_region_template_options=>'#DEFAULT#'
 ,p_plug_template=>wwv_flow_imp.id(7263428287544367)
 ,p_plug_display_sequence=>10
-,p_location=>'WEB_SOURCE'
-,p_web_src_module_id=>wwv_flow_imp.id(7489252110581928)
 ,p_query_type=>'SQL'
+,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'select DEPTNO,',
+'       DNAME,',
+'       LOC',
+'  from DEPT'))
 ,p_plug_source_type=>'NATIVE_IR'
 ,p_prn_page_header=>'Employees'
 );
@@ -38,7 +41,6 @@ wwv_flow_imp_page.create_worksheet(
 ,p_name=>'Employees'
 ,p_max_row_count_message=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
 ,p_no_data_found_message=>'No data found.'
-,p_base_pk1=>'EMPNO'
 ,p_pagination_type=>'ROWS_X_TO_Y'
 ,p_pagination_display_pos=>'BOTTOM_RIGHT'
 ,p_report_list_mode=>'TABS'
@@ -47,81 +49,10 @@ wwv_flow_imp_page.create_worksheet(
 ,p_show_notify=>'Y'
 ,p_download_formats=>'CSV:HTML:XLSX:PDF'
 ,p_enable_mail_download=>'Y'
-,p_detail_link=>'f?p=&APP_ID.:3:&APP_SESSION.::&DEBUG.:RP:P3_EMPNO:\#EMPNO#\'
+,p_detail_link=>'f?p=&APP_ID.:3:&SESSION.::&DEBUG.:RP,:P3_EMPNO:#DEPTNO##EMPNO#\'
 ,p_detail_link_text=>'<span role="img" aria-label="Edit"><span class="fa fa-edit" aria-hidden="true" title="Edit"></span></span>'
 ,p_owner=>'LIQUIBASE_DEMO'
 ,p_internal_uid=>7502601655205026
-);
-wwv_flow_imp_page.create_worksheet_column(
- p_id=>wwv_flow_imp.id(7504631873205046)
-,p_db_column_name=>'EMPNO'
-,p_display_order=>0
-,p_is_primary_key=>'Y'
-,p_column_identifier=>'E'
-,p_column_label=>'Empno'
-,p_column_type=>'NUMBER'
-,p_display_text_as=>'HIDDEN_ESCAPE_SC'
-,p_heading_alignment=>'LEFT'
-,p_tz_dependent=>'N'
-,p_use_as_row_header=>'N'
-);
-wwv_flow_imp_page.create_worksheet_column(
- p_id=>wwv_flow_imp.id(7503005680205035)
-,p_db_column_name=>'JOB'
-,p_display_order=>1
-,p_column_identifier=>'A'
-,p_column_label=>'Job'
-,p_column_type=>'STRING'
-,p_heading_alignment=>'LEFT'
-,p_tz_dependent=>'N'
-,p_use_as_row_header=>'N'
-);
-wwv_flow_imp_page.create_worksheet_column(
- p_id=>wwv_flow_imp.id(7503476560205045)
-,p_db_column_name=>'MGR'
-,p_display_order=>2
-,p_column_identifier=>'B'
-,p_column_label=>'Mgr'
-,p_column_type=>'NUMBER'
-,p_heading_alignment=>'RIGHT'
-,p_column_alignment=>'RIGHT'
-,p_tz_dependent=>'N'
-,p_use_as_row_header=>'N'
-);
-wwv_flow_imp_page.create_worksheet_column(
- p_id=>wwv_flow_imp.id(7503895608205046)
-,p_db_column_name=>'SAL'
-,p_display_order=>3
-,p_column_identifier=>'C'
-,p_column_label=>'Sal'
-,p_column_type=>'NUMBER'
-,p_heading_alignment=>'RIGHT'
-,p_column_alignment=>'RIGHT'
-,p_tz_dependent=>'N'
-,p_use_as_row_header=>'N'
-);
-wwv_flow_imp_page.create_worksheet_column(
- p_id=>wwv_flow_imp.id(7504286630205046)
-,p_db_column_name=>'COMM'
-,p_display_order=>4
-,p_column_identifier=>'D'
-,p_column_label=>'Comm'
-,p_column_type=>'NUMBER'
-,p_heading_alignment=>'RIGHT'
-,p_column_alignment=>'RIGHT'
-,p_tz_dependent=>'N'
-,p_use_as_row_header=>'N'
-);
-wwv_flow_imp_page.create_worksheet_column(
- p_id=>wwv_flow_imp.id(7505071688205047)
-,p_db_column_name=>'ENAME'
-,p_display_order=>6
-,p_column_identifier=>'F'
-,p_column_label=>'Ename'
-,p_column_type=>'STRING'
-,p_heading_alignment=>'LEFT'
-,p_tz_dependent=>'N'
-,p_use_as_row_header=>'N'
 );
 wwv_flow_imp_page.create_worksheet_column(
  p_id=>wwv_flow_imp.id(7505489111205047)
@@ -136,14 +67,23 @@ wwv_flow_imp_page.create_worksheet_column(
 ,p_use_as_row_header=>'N'
 );
 wwv_flow_imp_page.create_worksheet_column(
- p_id=>wwv_flow_imp.id(7505897853205047)
-,p_db_column_name=>'HIREDATE'
-,p_display_order=>8
-,p_column_identifier=>'H'
-,p_column_label=>'Hiredate'
-,p_column_type=>'DATE'
+ p_id=>wwv_flow_imp.id(7768502979863515)
+,p_db_column_name=>'DNAME'
+,p_display_order=>17
+,p_column_identifier=>'I'
+,p_column_label=>'Dname'
+,p_column_type=>'STRING'
 ,p_heading_alignment=>'LEFT'
-,p_tz_dependent=>'N'
+,p_use_as_row_header=>'N'
+);
+wwv_flow_imp_page.create_worksheet_column(
+ p_id=>wwv_flow_imp.id(7768673151863516)
+,p_db_column_name=>'LOC'
+,p_display_order=>27
+,p_column_identifier=>'J'
+,p_column_label=>'Loc'
+,p_column_type=>'STRING'
+,p_heading_alignment=>'LEFT'
 ,p_use_as_row_header=>'N'
 );
 wwv_flow_imp_page.create_worksheet_rpt(
@@ -153,7 +93,7 @@ wwv_flow_imp_page.create_worksheet_rpt(
 ,p_report_alias=>'75088'
 ,p_status=>'PUBLIC'
 ,p_is_default=>'Y'
-,p_report_columns=>'ENAME:DEPTNO:JOB:MGR:SAL:COMM:HIREDATE:'
+,p_report_columns=>'DEPTNO'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(7508046081205060)
