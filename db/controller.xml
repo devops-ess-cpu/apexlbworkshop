@@ -1,0 +1,110 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="root (generated)" id="1743159831041-1">
+        <createTable tableName="DATABASECHANGELOG_ACTIONS">
+            <column name="ID" type="VARCHAR2(255 BYTE)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SEQUENCE" type="NUMBER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SQL" type="CLOB"/>
+            <column name="SXML" type="CLOB"/>
+            <column name="AUTHOR" type="VARCHAR2(255 BYTE)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FILENAME" type="VARCHAR2(255 BYTE)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEPLOYMENT_ID" type="VARCHAR2(10 BYTE)"/>
+            <column name="STATUS" type="VARCHAR2(20 BYTE)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1743159831041-2">
+        <createTable tableName="DEPT">
+            <column autoIncrement="true" defaultOnNull="true" generationType="BY DEFAULT" name="DEPTNO" type="NUMBER(4, 0)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="DEPT_PK"/>
+            </column>
+            <column name="DNAME" type="VARCHAR2(50 BYTE)"/>
+            <column name="LOC" type="VARCHAR2(50 BYTE)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1743159831041-3">
+        <createTable tableName="EMP">
+            <column autoIncrement="true" defaultOnNull="true" generationType="BY DEFAULT" name="EMPNO" type="NUMBER(4, 0)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="EMP_PK"/>
+            </column>
+            <column name="ENAME" type="VARCHAR2(50 BYTE)"/>
+            <column name="JOB" type="VARCHAR2(50 BYTE)"/>
+            <column name="MGR" type="NUMBER(4, 0)"/>
+            <column name="HIREDATE" type="date"/>
+            <column name="SAL" type="NUMBER(7, 2)"/>
+            <column name="COMM" type="NUMBER(7, 2)"/>
+            <column name="DEPTNO" type="NUMBER(4, 0)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1743159831041-4">
+        <createView fullDefinition="true" viewName="DATABASECHANGELOG_DETAILS">CREATE OR REPLACE FORCE VIEW "DATABASECHANGELOG_DETAILS" ("DEPLOYMENT_ID", "ID", "AUTHOR", "FILENAME", "SQL", "SXML", "DATEEXECUTED", "EXECTYPE", "MD5SUM", "DESCRIPTION", "COMMENTS", "LIQUIBASE", "CONTEXTS", "LABELS") AS SELECT  da.deployment_id,    da.id,    da.author,    da.filename,  da.sql,     da.sxml,    d.dateexecuted,    d.exectype,    d.md5sum,  d.description,    d.comments,    d.liquibase,    d.contexts,    d.labels 
+FROM WKSP_LIQUIBASEDEMO.DATABASECHANGELOG d   LEFT JOIN WKSP_LIQUIBASEDEMO.DATABASECHANGELOG_ACTIONS da ON d.id = da.id AND d.author = da.author AND d.filename = da.filename ORDER BY   1,7</createView>
+    </changeSet>
+    <changeSet author="root (generated)" id="1743159831041-5">
+        <createView fullDefinition="true" viewName="EMP_DEPT_V">CREATE OR REPLACE FORCE VIEW "EMP_DEPT_V" ("EMPNO", "ENAME", "JOB", "MGR", "HIREDATE", "SAL", "COMM", "DEPTNO", "DNAME", "LOC") AS select e.empno
+,      e.ename
+,      e.job
+,      (select m.ename from emp m where e.mgr = m.empno) mgr
+,      e.hiredate
+,      e.sal
+,      e.comm
+,      d.deptno
+,      d.dname
+,      d.loc
+from emp e
+,    dept d
+where e.deptno = d.deptno (+)</createView>
+    </changeSet>
+    <changeSet author="root (generated)" id="1743159831041-6">
+        <createTable tableName="PINTU">
+            <column name="ID" type="NUMBER(*, 0)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_PINTU"/>
+            </column>
+            <column name="NAME" type="VARCHAR2(100 BYTE)"/>
+            <column name="EMAIL" type="VARCHAR2(150 BYTE)"/>
+            <column name="COMPANY_NAME" type="VARCHAR2(255 BYTE)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1743159831041-7">
+        <createIndex indexName="DATABASECHANGELOG_ACTIONS_PK" tableName="DATABASECHANGELOG_ACTIONS" unique="true">
+            <column name="ID"/>
+            <column name="AUTHOR"/>
+            <column name="FILENAME"/>
+            <column name="SEQUENCE"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="root (generated)" id="1743159831041-8">
+        <addPrimaryKey columnNames="ID, AUTHOR, FILENAME, SEQUENCE" constraintName="DATABASECHANGELOG_ACTIONS_PK" forIndexName="DATABASECHANGELOG_ACTIONS_PK" tableName="DATABASECHANGELOG_ACTIONS"/>
+    </changeSet>
+    <changeSet author="root (generated)" id="1743159831041-9">
+        <createIndex indexName="SYS_C0037132" tableName="PINTU" unique="true">
+            <column name="EMAIL"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="root (generated)" id="1743159831041-10">
+        <addUniqueConstraint columnNames="EMAIL" constraintName="SYS_C0037132" forIndexName="SYS_C0037132" tableName="PINTU"/>
+    </changeSet>
+    <changeSet author="root (generated)" id="1743159831041-11">
+        <createIndex indexName="EMP_1" tableName="EMP">
+            <column name="MGR"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="root (generated)" id="1743159831041-12">
+        <createIndex indexName="EMP_2" tableName="EMP">
+            <column name="DEPTNO"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="root (generated)" id="1743159831041-13">
+        <addForeignKeyConstraint baseColumnNames="DEPTNO" baseTableName="EMP" constraintName="EMP_DEPT_FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="DEPTNO" referencedTableName="DEPT" validate="true"/>
+    </changeSet>
+    <changeSet author="root (generated)" id="1743159831041-14">
+        <addForeignKeyConstraint baseColumnNames="MGR" baseTableName="EMP" constraintName="EMP_MGR_FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="EMPNO" referencedTableName="EMP" validate="true"/>
+    </changeSet>
+</databaseChangeLog>
