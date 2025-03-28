@@ -246,6 +246,38 @@ wwv_flow_imp_page.create_page_item(
   'subtype', 'TEXT',
   'trim_spaces', 'BOTH')).to_clob
 );
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(7768789828863517)
+,p_name=>'P6_EMP_NAME'
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_imp.id(8357723350821391)
+,p_prompt=>'Emp Name'
+,p_display_as=>'NATIVE_TEXT_FIELD'
+,p_cSize=>30
+,p_field_template=>wwv_flow_imp.id(7361801254544455)
+,p_item_template_options=>'#DEFAULT#'
+,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
+  'disabled', 'N',
+  'submit_when_enter_pressed', 'N',
+  'subtype', 'TEXT',
+  'trim_spaces', 'BOTH')).to_clob
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(7768800087863518)
+,p_name=>'P6_EMP_NO'
+,p_item_sequence=>20
+,p_item_plug_id=>wwv_flow_imp.id(8357723350821391)
+,p_prompt=>'Emp no'
+,p_display_as=>'NATIVE_TEXT_FIELD'
+,p_cSize=>30
+,p_field_template=>wwv_flow_imp.id(7361801254544455)
+,p_item_template_options=>'#DEFAULT#'
+,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
+  'disabled', 'N',
+  'submit_when_enter_pressed', 'N',
+  'subtype', 'TEXT',
+  'trim_spaces', 'BOTH')).to_clob
+);
 wwv_flow_imp_page.create_page_da_event(
  p_id=>wwv_flow_imp.id(7768280783863512)
 ,p_name=>'New'
@@ -268,8 +300,31 @@ wwv_flow_imp_page.create_page_da_action(
 ,p_affected_elements=>'TEXT_ITEM_TEST'
 );
 wwv_flow_imp_page.create_page_process(
- p_id=>wwv_flow_imp.id(8363587215821414)
+ p_id=>wwv_flow_imp.id(7768989471863519)
 ,p_process_sequence=>10
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'New'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'declare',
+'begin',
+'insert into emp(',
+'    empno,',
+'    ENAME',
+')',
+'values(',
+'    :P6_EMP_NO,',
+'    :P6_EMP_NAME',
+');',
+'',
+'end;'))
+,p_process_clob_language=>'PLSQL'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_internal_uid=>7768989471863519
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(8363587215821414)
+,p_process_sequence=>20
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_region_id=>wwv_flow_imp.id(8357723350821391)
 ,p_process_type=>'NATIVE_IG_DML'
