@@ -59,7 +59,7 @@ begin
   end if;
 end;  
 /
-@@/my-project/apex/f100/install.sql
+@@/apex/f100/install.sql
         ]]></n0:source>
     </n0:runApexScript>
 </changeSet>
