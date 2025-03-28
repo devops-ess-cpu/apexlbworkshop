@@ -115,6 +115,7 @@ prompt --install
 @@application/pages/page_00002.sql
 @@application/pages/page_00003.sql
 @@application/pages/page_00006.sql
+@@application/pages/page_00009.sql
 @@application/pages/page_09999.sql
 @@application/deployment/definition.sql
 @@application/deployment/checks.sql

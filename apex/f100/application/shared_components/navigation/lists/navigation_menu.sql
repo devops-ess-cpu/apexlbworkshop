@@ -15,7 +15,7 @@ wwv_flow_imp_shared.create_list(
  p_id=>wwv_flow_imp.id(7188352959544224)
 ,p_name=>'Navigation Menu'
 ,p_list_status=>'PUBLIC'
-,p_version_scn=>39423923059045
+,p_version_scn=>39423964577577
 );
 wwv_flow_imp_shared.create_list_item(
  p_id=>wwv_flow_imp.id(7482670914544762)
@@ -42,6 +42,15 @@ wwv_flow_imp_shared.create_list_item(
 ,p_list_item_icon=>'fa-table-pointer'
 ,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
 ,p_list_item_current_for_pages=>'6'
+);
+wwv_flow_imp_shared.create_list_item(
+ p_id=>wwv_flow_imp.id(8370967201148915)
+,p_list_item_display_sequence=>40
+,p_list_item_link_text=>'calender'
+,p_list_item_link_target=>'f?p=&APP_ID.:9:&APP_SESSION.::&DEBUG.:::'
+,p_list_item_icon=>'fa-calendar-o'
+,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
+,p_list_item_current_for_pages=>'9'
 );
 wwv_flow_imp.component_end;
 end;
