@@ -37,7 +37,7 @@ prompt APPLICATION 100 - REST Employees
 --   Flashback:       0
 --   Export Type:     Application Export
 --     Pages:                      6
---       Items:                   12
+--       Items:                   11
 --       Validations:              1
 --       Processes:                8
 --       Regions:                  8
@@ -118,7 +118,7 @@ wwv_imp_workspace.create_flow(
 ,p_substitution_value_01=>'REST Employees'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>6
-,p_version_scn=>39423923059436
+,p_version_scn=>39423952242478
 ,p_print_server_type=>'NATIVE'
 ,p_file_storage=>'DB'
 ,p_is_pwa=>'Y'
@@ -17989,21 +17989,6 @@ wwv_flow_imp_page.create_page_button(
 ,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
 ,p_button_alignment=>'RIGHT'
 ,p_button_redirect_url=>'f?p=&APP_ID.:3:&APP_SESSION.::&DEBUG.:3::'
-);
-wwv_flow_imp_page.create_page_item(
- p_id=>wwv_flow_imp.id(7767591757863505)
-,p_name=>'P2_NEW'
-,p_item_sequence=>30
-,p_prompt=>'New'
-,p_display_as=>'NATIVE_TEXT_FIELD'
-,p_cSize=>30
-,p_field_template=>wwv_flow_imp.id(7361801254544455)
-,p_item_template_options=>'#DEFAULT#'
-,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
-  'disabled', 'N',
-  'submit_when_enter_pressed', 'N',
-  'subtype', 'TEXT',
-  'trim_spaces', 'BOTH')).to_clob
 );
 wwv_flow_imp_page.create_page_da_event(
  p_id=>wwv_flow_imp.id(7506673361205050)

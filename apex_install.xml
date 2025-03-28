@@ -59,7 +59,7 @@ begin
   end if;
 end;  
 /
-@@code/f100.sql
+@@f100.sql
         ]]></n0:source>
     </n0:runApexScript>
 </changeSet>
